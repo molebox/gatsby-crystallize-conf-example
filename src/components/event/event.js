@@ -26,11 +26,11 @@ const Event = ({ path }) => {
 
   let title = data.catalogue.components[0].content.text;
   let logo = data.catalogue.components[1].content.images[0].variants[0].url;
-  let codeOfConduct = data.catalogue.components[4].content.json;
-  let speakersPath = data.catalogue.components[6].content.items.map(
+  let codeOfConduct = data.catalogue.components[2].content.json;
+  let speakersPath = data.catalogue.components[4].content.items.map(
     (node) => node.path
   );
-  let schedulePath = data.catalogue.components[5].content.items[0].path;
+  let schedulePath = data.catalogue.components[3].content.items[0].path;
 
   return (
     <Section>
@@ -65,7 +65,7 @@ const Event = ({ path }) => {
               {title}
             </Text>
           </Box>
-          <Image src={logo} boxSize={[100]} boxShadow="-3px 3px #e93f79" />
+          <Image src={logo} boxSize={100} boxShadow="-3px 3px #e93f79" />
         </Flex>
         <Container gridRow={2} gridColumn="1 / -1">
           <Flex
@@ -111,17 +111,11 @@ const GET_CONFERENCE = gql`
           ...imageContent
           ...singleLineText
           ...paragraphsCollection
-          ...confLocation
           ...propertiesTable
           ...relations
         }
       }
     }
-  }
-
-  fragment confLocation on LocationContent {
-    lat
-    long
   }
 
   fragment item on Item {
@@ -196,7 +190,6 @@ const GET_CONFERENCE = gql`
           ...imageContent
           ...singleLineText
           ...paragraphsCollection
-          ...confLocation
         }
       }
     }

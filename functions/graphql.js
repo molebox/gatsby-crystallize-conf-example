@@ -20,12 +20,4 @@ const server = new ApolloServer({
   introspection: true
 });
 
-exports.handler = server.createHandler({
-  // cors: {
-  //     // origin: "*",
-  //     origin: [
-  //         'http://localhost',
-  //     ],
-  //     // credentials: true
-  // }
-});
+exports.handler = server.createHandler();

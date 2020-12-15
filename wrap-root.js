@@ -14,20 +14,11 @@ const {theme} = require("./src/theme");
 const httpLink = createHttpLink({
   uri: "https://api.crystallize.com/rich-haines/catalogue",
   fetch,
-  // fetchOptions: {
-  //     mode: 'no-cors'
-  // }
 });
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: httpLink,
-  // link: new HttpLink({
-  //     uri: '/.netlify/functions/graphql',
-  //     // fetchOptions: {
-  //     //     mode: 'no-cors',
-  //     //   }
-  // }),
   fetch,
 });
 

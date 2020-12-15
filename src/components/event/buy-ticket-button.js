@@ -7,7 +7,7 @@ const BuyTicketButton = () => {
       bg="brand.accent"
       h="70px"
       w="250px"
-      px={[2]}
+      px={2}
       transition="all .25s ease-in-out"
       boxShadow="-5px 5px #000"
       borderRadius={0}

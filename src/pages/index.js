@@ -9,16 +9,6 @@ import Error from "../components/state/error";
 
 export default function Index() {
   const { loading, error, data } = useQuery(GET_ROOT_PATHS);
-  const [confPaths, setConfPaths] = React.useState([]);
-
-  React.useEffect(() => {
-    if (data) {
-      const conferencePaths = data.catalogue.children[0].children.map(
-        (node) => node.path
-      );
-      setConfPaths(conferencePaths);
-    }
-  }, [data, error, loading]);
 
   if (loading) {
     return <Loading />;
@@ -27,11 +17,16 @@ export default function Index() {
     return <Error />;
   }
 
+  const conferencePaths = data.catalogue.children[0].children.map(
+    (node) => node.path
+  );
+
   return (
     <Layout>
       <Hero />
-      {confPaths.length &&
-        confPaths.map((path, index) => <Event key={index} path={path} />)}
+      {conferencePaths.map((path, index) => (
+        <Event key={index} path={path} />
+      ))}
     </Layout>
   );
 }
