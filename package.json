@@ -8,22 +8,27 @@
     "dev": "gatsby develop",
     "build": "gatsby build",
     "clean": "gatsby clean",
-    "z": "gatsby clean && gatsby develop",
+    "z": "gatsby clean && netlify dev",
     "pretty": "prettier --write \"src/**/*js\""
   },
   "dependencies": {
     "@apollo/client": "^3.3.5",
-    "@chakra-ui/react": "^1.0.3",
+    "@chakra-ui/react": "^1.0.0",
+    "@crystallize/content-transformer": "^6.1.0",
     "@emotion/react": "^11.1.2",
     "@emotion/styled": "^11.0.0",
     "apollo-server-lambda": "^2.19.0",
     "framer-motion": "^2.9.5",
     "gatsby": "^2.28.2",
-    "gatsby-source-graphql": "^2.10.0",
+    "gatsby-plugin-google-fonts": "^1.0.1",
+    "gatsby-source-filesystem": "^2.7.0",
     "graphql": "^15.4.0",
+    "graphql-tools": "^7.0.2",
+    "gsap": "^3.5.1",
     "isomorphic-fetch": "^3.0.0",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-rough-notation": "^1.0.1"
   },
   "devDependencies": {
     "prettier": "^2.2.1"

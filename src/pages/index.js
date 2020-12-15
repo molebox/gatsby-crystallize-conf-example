@@ -1,25 +1,56 @@
-import React from 'react';
+import React from "react";
 
-import { gql, useQuery } from '@apollo/client';
-
-const HELLO_QUERY = gql`
-    query HelloWorld {
-        hello
-    }
-`;
+import { useQuery, gql } from "@apollo/client";
+import Hero from "../components/hero/hero";
+import Layout from "./../components/layout";
+import Event from "../components/event/event";
+import Loading from "../components/state/loading";
+import Error from "../components/state/error";
 
 export default function Index() {
-    const {loading, error, data} = useQuery(HELLO_QUERY);
-    React.useEffect(() => {
-        if (data) {
-            console.log({data})
-        }
-    }, [data])
+  const { loading, error, data } = useQuery(GET_ROOT_PATHS);
+  const [confPaths, setConfPaths] = React.useState([]);
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
+  React.useEffect(() => {
+    if (data) {
+      const conferencePaths = data.catalogue.children[0].children.map(
+        (node) => node.path
+      );
+      setConfPaths(conferencePaths);
+    }
+  }, [data, error, loading]);
 
-    return (
-        <h1>boop</h1>
-    )
+  if (loading) {
+    return <Loading />;
+  }
+  if (error) {
+    return <Error />;
+  }
+
+  return (
+    <Layout>
+      <Hero />
+      {confPaths.length &&
+        confPaths.map((path, index) => <Event key={index} path={path} />)}
+    </Layout>
+  );
 }
+
+const GET_ROOT_PATHS = gql`
+  query GetRootPaths {
+    catalogue(language: "en", path: "/") {
+      children {
+        path
+        shape {
+          name
+        }
+        children {
+          path
+          shape {
+            name
+          }
+        }
+      }
+    }
+  }
+`;

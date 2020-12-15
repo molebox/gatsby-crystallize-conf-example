@@ -1,22 +1,31 @@
-const {ApolloServer} = require('apollo-server-lambda');
+const {ApolloServer, makeRemoteExecutableSchema, introspectSchema} = require('apollo-server-lambda');
+const { createServerHttpLink } = require('graphql-tools');
+const fetch = require('isomorphic-fetch');
 
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
+// create the http link to fetch the gql data from crystallize
+const link = createServerHttpLink({
+    uri: 'https://api.crystallize.com/rich-haines/catalogue',
+    fetch,
+  });
 
-const resolvers = {
-  Query: {
-    hello: (parent, args, context) => {
-      return "Hello, world!";
-    }
-  }
-};
+// use schema introspection to get the schema from the remote source. 
+// in our case that is crystallize
+const schema = makeRemoteExecutableSchema({
+  schema: introspectSchema(link),
+  link,
+})
 
 const server = new ApolloServer({
-  typeDefs,
-  resolvers
+  schema,
+  introspection: true
 });
 
-exports.handler = server.createHandler();
+exports.handler = server.createHandler({
+  // cors: {
+  //     // origin: "*",
+  //     origin: [
+  //         'http://localhost',
+  //     ],
+  //     // credentials: true
+  // }
+});
