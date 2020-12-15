@@ -9,6 +9,7 @@ import Schedule from "./schedule";
 import CoD from "./cod";
 import BuyTicketButton from "./buy-ticket-button";
 import Container from "./container";
+import Heading from "./heading";
 
 const Event = ({ path }) => {
   const { loading, error, data } = useQuery(GET_CONFERENCE, {
@@ -35,7 +36,7 @@ const Event = ({ path }) => {
   return (
     <Section>
       <Grid
-        templateColumns={["repeat(3, 1fr)"]}
+        templateColumns="10% 1fr 10%"
         autoRows="auto"
         w={["95%", "1440px"]}
         m="2em auto"
@@ -43,12 +44,7 @@ const Event = ({ path }) => {
         gap={5}
         boxShadow="-3px 3px #000"
       >
-        <Flex
-          gridColumn="1 / -1"
-          gridRow={1}
-          justify="space-evenly"
-          align="center"
-        >
+        <Flex gridColumn={2} gridRow={1} justify="space-evenly" align="center">
           <Box
             bgColor="brand.offBlack"
             p={6}
@@ -67,15 +63,22 @@ const Event = ({ path }) => {
           </Box>
           <Image src={logo} boxSize={100} boxShadow="-3px 3px #e93f79" />
         </Flex>
-        <Container gridRow={2} gridColumn="1 / -1">
+        <Container
+          gridRow={2}
+          gridColumn={2}
+          border="solid 1px"
+          p={2}
+          boxShadow="-3px 3px #000"
+        >
+          <Heading>The Speakers</Heading>
           <Flex
             gridRow={2}
-            gridColumn="1 / -1"
+            gridColumn={2}
             p={2}
             justify="center"
             align="center"
             wrap="wrap"
-            m="0 auto"
+            m="1em auto"
             maxW="1000px"
           >
             {speakersPath.map((path, index) => (
@@ -83,13 +86,13 @@ const Event = ({ path }) => {
             ))}
           </Flex>
         </Container>
-        <Container gridRow={3} gridColumn="1 / -1">
+        <Container gridRow={3} gridColumn={2}>
           <Schedule path={schedulePath} />
         </Container>
-        <Container gridRow={4} gridColumn="1 / -1">
+        <Container gridRow={4} gridColumn={2}>
           <CoD cod={codeOfConduct} />
         </Container>
-        <Container mx="auto" mb={6} gridRow={5} gridColumn="1 / -1">
+        <Container mx="auto" mb={6} gridRow={5} gridColumn={2}>
           <BuyTicketButton />
         </Container>
       </Grid>
@@ -102,7 +105,6 @@ export default Event;
 const GET_CONFERENCE = gql`
   query GetConference($path: String!) {
     catalogue(language: "en", path: $path) {
-      ...item
       name
       path
       components {
@@ -115,15 +117,6 @@ const GET_CONFERENCE = gql`
           ...relations
         }
       }
-    }
-  }
-
-  fragment item on Item {
-    name
-    type
-    path
-    children {
-      name
     }
   }
 

@@ -29,7 +29,13 @@ const Speaker = ({ path }) => {
   return (
     <Flex direction="column" p={2} align="center" minH="300px">
       <Image mb={3} src={image} borderRadius="full" boxSize={100} />
-      <RoughNotation type="circle" show={true} color="#e93f79">
+      <RoughNotation
+        type="highlight"
+        strokeWidth={2}
+        padding={0}
+        show={true}
+        color="#e93f79"
+      >
         <ContentTransform fontSize="xl" {...name} />
       </RoughNotation>
       <Text fontSize="md" fontWeight={600} my={3}>
