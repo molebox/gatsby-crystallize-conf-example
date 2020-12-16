@@ -14,7 +14,7 @@ const CoD = ({ cod }) => {
       p={2}
       m="2em auto"
       boxShadow="-3px 3px #000"
-      border="solid 1px"
+      border="solid 1px #000"
       w={["300px", "1000px"]}
     >
       <Container>

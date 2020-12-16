@@ -38,13 +38,13 @@ const Speaker = ({ path }) => {
       >
         <ContentTransform fontSize="xl" {...name} />
       </RoughNotation>
-      <Text fontSize="md" fontWeight={600} my={3}>
+      <Text color="#000" fontSize="md" fontWeight={600} my={3}>
         {company}
       </Text>
       <Box maxW="300px" align="center">
         <ContentTransform {...bio} />
       </Box>
-      <Text fontWeight={600} fontSize="md" my={3}>
+      <Text color="#000"  fontWeight={600} fontSize="md" my={3}>
         {twitter}
       </Text>
     </Flex>

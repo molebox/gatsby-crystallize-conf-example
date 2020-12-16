@@ -42,6 +42,7 @@ const Schedule = ({ path }) => {
                 fontSize={["md", "xl"]}
                 fontWeight={600}
                 fontFamily="heading"
+                color="#000"
               >
                 Speaker
               </Text>
@@ -51,6 +52,7 @@ const Schedule = ({ path }) => {
                 fontSize={["md", "xl"]}
                 fontWeight={600}
                 fontFamily="heading"
+                color="#000"
               >
                 Subject...
               </Text>
@@ -61,13 +63,13 @@ const Schedule = ({ path }) => {
         <Box as="tbody">
           {schedule.map((node, index) => (
             <Box key={index} as="tr">
-              <Box as="td" borderBottom="solid 1px" borderLeft="solid 1px">
-                <Text fontSize={["md", "xl"]} fontFamily="body">
+              <Box as="td" borderBottom="solid 1px" borderLeft="solid 1px" borderColor="#000">
+                <Text color="#000" fontSize={["md", "xl"]} fontFamily="body">
                   {node.key}
                 </Text>
               </Box>
-              <Box as="td" borderBottom="solid 1px" borderLeft="solid 1px">
-                <Text fontSize={["md", "xl"]} fontFamily="body">
+              <Box as="td" borderBottom="solid 1px" borderLeft="solid 1px" borderColor="#000">
+                <Text color="#000" fontSize={["md", "xl"]} fontFamily="body">
                   {node.value}
                 </Text>
               </Box>

@@ -6,7 +6,7 @@ const ContentTransform = (props) => {
   const overrides = {
     paragraph({ metadata, renderNode, ...rest }) {
       return (
-        <Text fontSize={props.fontSize} my={2}>
+        <Text color="#000" fontSize={props.fontSize} my={2}>
           {renderNode(rest)}
         </Text>
       );
