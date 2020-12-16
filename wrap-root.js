@@ -1,4 +1,3 @@
-import { ChakraProvider } from "@chakra-ui/react";
 const React = require("react");
 // We need this as fetch only runs in the browser
 const fetch = require("isomorphic-fetch");
@@ -8,6 +7,7 @@ const {
   createHttpLink,
   InMemoryCache,
 } = require("@apollo/client");
+const { ChakraProvider } = require("@chakra-ui/react");
 const {theme} = require("./src/theme");
 
 // create the http link to fetch the gql results
